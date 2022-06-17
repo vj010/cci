@@ -3,6 +3,7 @@ package CheckPermutation;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -34,7 +35,7 @@ public class CheckPermutation {
             return false;
         }
 
-        Set<Character> set = s1.chars().mapToObj(e -> (char) e).collect(Collectors.toSet());
+        Set<Character> set = s1.chars().mapToObj(e -> (char) e).collect(Collectors.toCollection(HashSet::new));
 
         for (Character c : s2.toCharArray()) {
             if (!set.contains(c)) {
