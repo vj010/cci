@@ -3,7 +3,6 @@ package ArrayAndString;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class IsUnique {
@@ -28,12 +27,16 @@ public class IsUnique {
         if (str == null) {
             return false;
         }
-        String[] characters = str.split("");
-        Arrays.sort(characters);
-        for (int i = 1; i < characters.length; i++) {
-            if (characters[i] == characters[i - 1]) {
+        if (str.length() > 256) {
+            return false;
+        }
+        boolean[] ascii = new boolean[256];
+
+        for (int i = 0; i < str.length(); i++) {
+            if (ascii[str.charAt(i)]) {
                 return false;
             }
+            ascii[str.charAt(i)] = true;
         }
         return true;
     }
